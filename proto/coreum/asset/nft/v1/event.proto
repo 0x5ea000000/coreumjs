@@ -1,0 +1,48 @@
+syntax = "proto3";
+package coreum.asset.nft.v1;
+
+import "gogoproto/gogo.proto";
+
+import "coreum/asset/nft/v1/nft.proto";
+
+option go_package = "github.com/CoreumFoundation/coreum/v2/x/asset/nft/types";
+
+// EventClassIssued is emitted on MsgIssueClass.
+message EventClassIssued {
+  string id = 1 [(gogoproto.customname) = "ID"];
+  string issuer = 2;
+  string symbol = 3;
+  string name = 4;
+  string description = 5;
+  string uri = 6 [(gogoproto.customname) = "URI"];
+  string uri_hash = 7 [(gogoproto.customname) = "URIHash"];
+  repeated ClassFeature features = 8;
+  string royalty_rate = 9 [
+    (gogoproto.nullable) = false,
+    (gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"
+  ];
+}
+
+message EventFrozen {
+  string class_id = 1;
+  string id       = 2;
+  string owner    = 3;
+}
+
+message EventUnfrozen {
+  string class_id = 1;
+  string id       = 2;
+  string owner    = 3;
+}
+
+message EventAddedToWhitelist {
+  string class_id = 1;
+  string id       = 2;
+  string account   = 3;
+}
+
+message EventRemovedFromWhitelist {
+  string class_id = 1;
+  string id       = 2;
+  string account   = 3;
+}

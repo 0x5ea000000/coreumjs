@@ -1,0 +1,137 @@
+syntax = "proto3";
+package coreum.asset.nft.v1;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+import "coreum/asset/nft/v1/nft.proto";
+import "coreum/asset/nft/v1/params.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+
+option go_package = "github.com/CoreumFoundation/coreum/v2/x/asset/nft/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Params queries the parameters of x/asset/nft module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/coreum/asset/nft/v1/params";
+  }
+
+  // Class queries the non-fungible token class of the module.
+  rpc Class(QueryClassRequest) returns (QueryClassResponse) {
+    option (google.api.http).get = "/coreum/asset/nft/v1/classes/{id}";
+  }
+
+  // Classes queries the non-fungible token classes of the module.
+  rpc Classes(QueryClassesRequest) returns (QueryClassesResponse) {
+    option (google.api.http).get = "/coreum/asset/nft/v1/classes";
+  }
+
+  // Frozen queries to check if an NFT is frozen or not.
+  rpc Frozen (QueryFrozenRequest) returns (QueryFrozenResponse) {
+    option (google.api.http).get = "/coreum/asset/nft/v1/classes/{class_id}/nfts/{id}/frozen";
+  }
+
+  // Whitelisted queries to check if an account is whitelited to hold an NFT or not.
+  rpc Whitelisted (QueryWhitelistedRequest) returns (QueryWhitelistedResponse) {
+    option (google.api.http).get = "/coreum/asset/nft/v1/classes/{class_id}/nfts/{id}/whitelisted/{account}";
+  }
+
+  // WhitelistedAccountsForNFT returns the list of accounts which are whitelisted to hold this NFT.
+  rpc WhitelistedAccountsForNFT (QueryWhitelistedAccountsForNFTRequest) returns (QueryWhitelistedAccountsForNFTResponse) {
+    option (google.api.http).get = "/coreum/asset/nft/v1/classes/{class_id}/nfts/{id}/whitelisted";
+  }
+
+  // BurntNFTsInClass checks if an nft if is in burnt NFTs list.
+  rpc BurntNFT (QueryBurntNFTRequest) returns (QueryBurntNFTResponse) {
+    option (google.api.http).get = "/coreum/asset/nft/v1/classes/{class_id}/burnt/{nft_id}";
+  }
+
+  // BurntNFTsInClass returns the list of burnt nfts in a class.
+  rpc BurntNFTsInClass (QueryBurntNFTsInClassRequest) returns (QueryBurntNFTsInClassResponse) {
+    option (google.api.http).get = "/coreum/asset/nft/v1/classes/{class_id}/burnt";
+  }
+}
+
+// QueryParamsRequest defines the request type for querying x/asset/nft parameters.
+message QueryParamsRequest {}
+
+// QueryParamsResponse defines the response type for querying x/asset/nft parameters.
+message QueryParamsResponse {
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryTokenRequest is request type for the Query/Class RPC method.
+message QueryClassRequest {
+  string id = 1; // we don't use the gogoproto.customname here since the google.api.http ignores it and generates invalid code.
+}
+
+// QueryClassResponse is response type for the Query/Class RPC method.
+message QueryClassResponse {
+  Class class = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryTokenRequest is request type for the Query/Classes RPC method.
+message QueryClassesRequest {
+  // pagination defines an optional pagination for the request.
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+  string issuer = 2;
+}
+
+// QueryClassResponse is response type for the Query/Classes RPC method.
+message QueryClassesResponse {
+  // pagination defines the pagination in the response.
+  cosmos.base.query.v1beta1.PageResponse pagination = 1;
+  repeated Class classes = 2 [(gogoproto.nullable) = false];
+}
+
+message QueryFrozenRequest {
+  string id = 1;
+  string class_id = 2;
+}
+
+message QueryFrozenResponse {
+  bool frozen = 1;
+}
+
+message QueryWhitelistedRequest {
+  string id = 1;
+  string class_id = 2;
+  string account = 3;
+}
+
+message QueryWhitelistedResponse {
+  bool whitelisted = 1;
+}
+
+message QueryWhitelistedAccountsForNFTRequest {
+  // pagination defines an optional pagination for the request.
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+  string id = 2;
+  string class_id = 3;
+}
+
+message QueryWhitelistedAccountsForNFTResponse {
+  // pagination defines the pagination in the response.
+  cosmos.base.query.v1beta1.PageResponse pagination = 1;
+  repeated string accounts = 2;
+}
+
+message QueryBurntNFTRequest {
+  string class_id = 1;
+  string nft_id = 2;
+}
+
+message QueryBurntNFTResponse {
+  bool burnt = 1;
+}
+
+message QueryBurntNFTsInClassRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+  string class_id = 2;
+}
+
+message QueryBurntNFTsInClassResponse {
+  cosmos.base.query.v1beta1.PageResponse pagination = 1;
+  repeated string nft_ids = 2;
+}

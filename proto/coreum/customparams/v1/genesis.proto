@@ -1,0 +1,13 @@
+syntax = "proto3";
+package coreum.customparams.v1;
+
+import "gogoproto/gogo.proto";
+import "coreum/customparams/v1/params.proto";
+
+option go_package = "github.com/CoreumFoundation/coreum/v2/x/customparams/types";
+
+// GenesisState defines the module's genesis state.
+message GenesisState {
+  // staking_params defines staking parameters of the module.
+  StakingParams staking_params = 1 [(gogoproto.nullable) = false];
+}
