@@ -1,41 +1,42 @@
-# coreumjs
+# coreum
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/545047/188804067-28e67e5e-0214-4449-ab04-2e0c564a6885.svg" width="80"><br />
-    telescopes generated types for coreum blockchain
+    telescope generated types for coreum blockchain
 </p>
-
 
 ## install
 
 ```sh
-npm install coreumjs
+npm install coreum
 ```
+
 ## Table of contents
 
-- [coreumjs](#coreumjs)
+- [coreum](#coreum)
   - [Install](#install)
   - [Table of contents](#table-of-contents)
 - [Usage](#usage)
-    - [RPC Clients](#rpc-clients)
-    - [Composing Messages](#composing-messages)
-        - Cosmos, CosmWasm, and IBC
-            - [CosmWasm](#cosmwasm-messages)
-            - [IBC](#ibc-messages)
-            - [Cosmos](#cosmos-messages)
+  - [RPC Clients](#rpc-clients)
+  - [Composing Messages](#composing-messages)
+    - Cosmos, CosmWasm, and IBC
+      - [CosmWasm](#cosmwasm-messages)
+      - [IBC](#ibc-messages)
+      - [Cosmos](#cosmos-messages)
 - [Wallets and Signers](#connecting-with-wallets-and-signing-messages)
-    - [Stargate Client](#initializing-the-stargate-client)
-    - [Creating Signers](#creating-signers)
-    - [Broadcasting Messages](#broadcasting-messages)
+  - [Stargate Client](#initializing-the-stargate-client)
+  - [Creating Signers](#creating-signers)
+  - [Broadcasting Messages](#broadcasting-messages)
 - [Advanced Usage](#advanced-usage)
 - [Developing](#developing)
 - [Credits](#credits)
 
 ## Usage
+
 ### RPC Clients
 
 ```js
-import { coreum } from 'coreumjs';
+import { coreum } from 'coreum';
 
 const { createRPCQueryClient } = coreum.ClientFactory; 
 const client = await createRPCQueryClient({ rpcEndpoint: RPC_ENDPOINT });
@@ -51,10 +52,10 @@ const balances = await client.coreum.exchange.v1beta1
 
 ### Composing Messages
 
-Import the `coreum` object from `coreumjs`. 
+Import the `coreum` object from `coreum`.
 
 ```js
-import { coreum } from 'coreumjs';
+import { coreum } from 'coreum';
 
 const {
     createSpotLimitOrder,
@@ -66,7 +67,7 @@ const {
 #### CosmWasm Messages
 
 ```js
-import { cosmwasm } from "coreumjs";
+import { cosmwasm } from "coreum";
 
 const {
     clearAdmin,
@@ -81,7 +82,7 @@ const {
 #### IBC Messages
 
 ```js
-import { ibc } from 'coreumjs';
+import { ibc } from 'coreum';
 
 const {
     transfer
@@ -91,7 +92,7 @@ const {
 #### Cosmos Messages
 
 ```js
-import { cosmos } from 'coreumjs';
+import { cosmos } from 'coreum';
 
 const {
     fundCommunityPool,
@@ -132,20 +133,22 @@ Here are the docs on [creating signers](https://github.com/cosmology-tech/cosmos
 Use `getSigningcoreumClient` to get your `SigningStargateClient`, with the proto/amino messages full-loaded. No need to manually add amino types, just require and initialize the client:
 
 ```js
-import { getSigningcoreumClient } from 'coreumjs';
+import { getSigningcoreumClient } from 'coreum';
 
 const stargateClient = await getSigningcoreumClient({
   rpcEndpoint,
   signer // OfflineSigner
 });
 ```
+
 ### Creating Signers
 
 To broadcast messages, you can create signers with a variety of options:
 
-* [cosmos-kit](https://github.com/cosmology-tech/cosmos-kit/tree/main/packages/react#signing-clients) (recommended)
-* [keplr](https://docs.keplr.app/api/cosmjs.html)
-* [cosmjs](https://gist.github.com/webmaster128/8444d42a7eceeda2544c8a59fbd7e1d9)
+- [cosmos-kit](https://github.com/cosmology-tech/cosmos-kit/tree/main/packages/react#signing-clients) (recommended)
+- [keplr](https://docs.keplr.app/api/cosmjs.html)
+- [cosmjs](https://gist.github.com/webmaster128/8444d42a7eceeda2544c8a59fbd7e1d9)
+
 ### Amino Signer
 
 Likely you'll want to use the Amino, so unless you need proto, you should use this one:
@@ -153,6 +156,7 @@ Likely you'll want to use the Amino, so unless you need proto, you should use th
 ```js
 import { getOfflineSignerAmino as getOfflineSigner } from 'cosmjs-utils';
 ```
+
 ### Proto Signer
 
 ```js
@@ -172,6 +176,7 @@ const mnemonic =
     chain
   });
 ```
+
 ### Broadcasting Messages
 
 Now that you have your `stargateClient`, you can broadcast messages:
@@ -204,7 +209,6 @@ const response = await stargateClient.signAndBroadcast(address, [msg], fee);
 
 ## Advanced Usage
 
-
 If you want to manually construct a stargate client
 
 ```js
@@ -220,7 +224,7 @@ import {
     ibcAminoConverters,
     coreumAminoConverters,
     coreumProtoRegistry
-} from 'coreumjs';
+} from 'coreum';
 
 const signer: OfflineSigner = /* create your signer (see above)  */
 const rpcEndpint = 'https://rpc.cosmos.directory/coreum'; // or another URL
@@ -259,7 +263,7 @@ yarn build
 
 ### Codegen
 
-Contract schemas live in `./contracts`, and protos in `./proto`. Look inside of `scripts/codegen.js` and configure the settings for bundling your SDK and contracts into `coreumjs`:
+Contract schemas live in `./contracts`, and protos in `./proto`. Look inside of `scripts/codegen.js` and configure the settings for bundling your SDK and contracts into `coreum`:
 
 ```
 yarn codegen
@@ -278,12 +282,12 @@ yarn publish
 
 Checkout these related projects:
 
-* [@cosmwasm/ts-codegen](https://github.com/CosmWasm/ts-codegen) for generated CosmWasm contract Typescript classes
-* [@cosmology/telescope](https://github.com/cosmology-tech/telescope) a "babel for the Cosmos", Telescope is a TypeScript Transpiler for Cosmos Protobufs.
-* [chain-registry](https://github.com/cosmology-tech/chain-registry) an npm module for the official Cosmos chain-registry.
-* [cosmos-kit](https://github.com/cosmology-tech/cosmos-kit) A wallet connector for the Cosmos ⚛️
-* [create-cosmos-app](https://github.com/cosmology-tech/create-cosmos-app) set up a modern Cosmos app by running one command.
-* [starship](https://github.com/cosmology-tech/starship) a k8s-based unified development environment for Cosmos Ecosystem
+- [@cosmwasm/ts-codegen](https://github.com/CosmWasm/ts-codegen) for generated CosmWasm contract Typescript classes
+- [@cosmology/telescope](https://github.com/cosmology-tech/telescope) a "babel for the Cosmos", Telescope is a TypeScript Transpiler for Cosmos Protobufs.
+- [chain-registry](https://github.com/cosmology-tech/chain-registry) an npm module for the official Cosmos chain-registry.
+- [cosmos-kit](https://github.com/cosmology-tech/cosmos-kit) A wallet connector for the Cosmos ⚛️
+- [create-cosmos-app](https://github.com/cosmology-tech/create-cosmos-app) set up a modern Cosmos app by running one command.
+- [starship](https://github.com/cosmology-tech/starship) a k8s-based unified development environment for Cosmos Ecosystem
 
 ## Credits
 

@@ -1,7 +1,7 @@
 {
-  "name": "coreumjs",
-  "version": "0.0.1",
-  "description": "telescopes generated types for coreum blockchain",
+  "name": "coreum",
+  "version": "0.1.0",
+  "description": "telescope generated types for coreum blockchain",
   "author": "haipro287 <haipro287@gmail.com>",
   "homepage": "https://github.com/haipro287/coreumjs#readme",
   "license": "SEE LICENSE IN LICENSE",
