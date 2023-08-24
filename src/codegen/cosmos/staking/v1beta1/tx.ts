@@ -45,19 +45,19 @@ export interface MsgCreateValidatorSDKType {
   value: CoinSDKType;
 }
 /** MsgCreateValidatorResponse defines the Msg/CreateValidator response type. */
-export interface MsgCreateValidatorResponse {}
+export interface MsgCreateValidatorResponse { }
 export interface MsgCreateValidatorResponseProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.MsgCreateValidatorResponse";
   value: Uint8Array;
 }
 /** MsgCreateValidatorResponse defines the Msg/CreateValidator response type. */
-export interface MsgCreateValidatorResponseAmino {}
+export interface MsgCreateValidatorResponseAmino { }
 export interface MsgCreateValidatorResponseAminoMsg {
   type: "cosmos-sdk/MsgCreateValidatorResponse";
   value: MsgCreateValidatorResponseAmino;
 }
 /** MsgCreateValidatorResponse defines the Msg/CreateValidator response type. */
-export interface MsgCreateValidatorResponseSDKType {}
+export interface MsgCreateValidatorResponseSDKType { }
 /** MsgEditValidator defines a SDK message for editing an existing validator. */
 export interface MsgEditValidator {
   description: Description;
@@ -100,19 +100,19 @@ export interface MsgEditValidatorSDKType {
   min_self_delegation: string;
 }
 /** MsgEditValidatorResponse defines the Msg/EditValidator response type. */
-export interface MsgEditValidatorResponse {}
+export interface MsgEditValidatorResponse { }
 export interface MsgEditValidatorResponseProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.MsgEditValidatorResponse";
   value: Uint8Array;
 }
 /** MsgEditValidatorResponse defines the Msg/EditValidator response type. */
-export interface MsgEditValidatorResponseAmino {}
+export interface MsgEditValidatorResponseAmino { }
 export interface MsgEditValidatorResponseAminoMsg {
   type: "cosmos-sdk/MsgEditValidatorResponse";
   value: MsgEditValidatorResponseAmino;
 }
 /** MsgEditValidatorResponse defines the Msg/EditValidator response type. */
-export interface MsgEditValidatorResponseSDKType {}
+export interface MsgEditValidatorResponseSDKType { }
 /**
  * MsgDelegate defines a SDK message for performing a delegation of coins
  * from a delegator to a validator.
@@ -149,19 +149,19 @@ export interface MsgDelegateSDKType {
   amount: CoinSDKType;
 }
 /** MsgDelegateResponse defines the Msg/Delegate response type. */
-export interface MsgDelegateResponse {}
+export interface MsgDelegateResponse { }
 export interface MsgDelegateResponseProtoMsg {
   typeUrl: "/cosmos.staking.v1beta1.MsgDelegateResponse";
   value: Uint8Array;
 }
 /** MsgDelegateResponse defines the Msg/Delegate response type. */
-export interface MsgDelegateResponseAmino {}
+export interface MsgDelegateResponseAmino { }
 export interface MsgDelegateResponseAminoMsg {
   type: "cosmos-sdk/MsgDelegateResponse";
   value: MsgDelegateResponseAmino;
 }
 /** MsgDelegateResponse defines the Msg/Delegate response type. */
-export interface MsgDelegateResponseSDKType {}
+export interface MsgDelegateResponseSDKType { }
 /**
  * MsgBeginRedelegate defines a SDK message for performing a redelegation
  * of coins from a delegator and source validator to a destination validator.
@@ -364,6 +364,7 @@ export const MsgCreateValidator = {
       minSelfDelegation: object.min_self_delegation,
       delegatorAddress: object.delegator_address,
       validatorAddress: object.validator_address,
+      // @ts-ignore
       pubkey: encodeBech32Pubkey({
         type: "tendermint/PubKeySecp256k1",
         value: toBase64(object.pubkey.value)
@@ -380,6 +381,7 @@ export const MsgCreateValidator = {
     obj.validator_address = message.validatorAddress;
     obj.pubkey = message.pubkey ? {
       typeUrl: "/cosmos.crypto.secp256k1.PubKey",
+      // @ts-ignore
       value: fromBase64(decodeBech32Pubkey(message.pubkey).value)
     } : undefined;
     obj.value = message.value ? Coin.toAmino(message.value) : undefined;

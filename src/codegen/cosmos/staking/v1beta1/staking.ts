@@ -1290,6 +1290,7 @@ export const Validator = {
   fromAmino(object: ValidatorAmino): Validator {
     return {
       operatorAddress: object.operator_address,
+      // @ts-ignore
       consensusPubkey: encodeBech32Pubkey({
         type: "tendermint/PubKeySecp256k1",
         value: toBase64(object.consensus_pubkey.value)
@@ -1310,6 +1311,7 @@ export const Validator = {
     obj.operator_address = message.operatorAddress;
     obj.consensus_pubkey = message.consensusPubkey ? {
       typeUrl: "/cosmos.crypto.secp256k1.PubKey",
+      // @ts-ignore
       value: fromBase64(decodeBech32Pubkey(message.consensusPubkey).value)
     } : undefined;
     obj.jailed = message.jailed;

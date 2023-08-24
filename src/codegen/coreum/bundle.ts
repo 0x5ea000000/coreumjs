@@ -23,22 +23,22 @@ import * as _22 from "./nft/v1beta1/genesis";
 import * as _23 from "./nft/v1beta1/nft";
 import * as _24 from "./nft/v1beta1/query";
 import * as _25 from "./nft/v1beta1/tx";
-import * as _88 from "./asset/ft/v1/tx.amino";
-import * as _89 from "./asset/nft/v1/tx.amino";
-import * as _90 from "./nft/v1beta1/tx.amino";
-import * as _91 from "./asset/ft/v1/tx.registry";
-import * as _92 from "./asset/nft/v1/tx.registry";
-import * as _93 from "./nft/v1beta1/tx.registry";
-import * as _94 from "./asset/ft/v1/query.rpc.Query";
-import * as _95 from "./asset/nft/v1/query.rpc.Query";
-import * as _96 from "./customparams/v1/query.rpc.Query";
-import * as _97 from "./feemodel/v1/query.rpc.Query";
-import * as _98 from "./nft/v1beta1/query.rpc.Query";
-import * as _99 from "./asset/ft/v1/tx.rpc.msg";
-import * as _100 from "./asset/nft/v1/tx.rpc.msg";
-import * as _101 from "./nft/v1beta1/tx.rpc.msg";
-import * as _128 from "./rpc.query";
-import * as _129 from "./rpc.tx";
+import * as _95 from "./asset/ft/v1/tx.amino";
+import * as _96 from "./asset/nft/v1/tx.amino";
+import * as _97 from "./nft/v1beta1/tx.amino";
+import * as _98 from "./asset/ft/v1/tx.registry";
+import * as _99 from "./asset/nft/v1/tx.registry";
+import * as _100 from "./nft/v1beta1/tx.registry";
+import * as _101 from "./asset/ft/v1/query.rpc.Query";
+import * as _102 from "./asset/nft/v1/query.rpc.Query";
+import * as _103 from "./customparams/v1/query.rpc.Query";
+import * as _104 from "./feemodel/v1/query.rpc.Query";
+import * as _105 from "./nft/v1beta1/query.rpc.Query";
+import * as _106 from "./asset/ft/v1/tx.rpc.msg";
+import * as _107 from "./asset/nft/v1/tx.rpc.msg";
+import * as _108 from "./nft/v1beta1/tx.rpc.msg";
+import * as _139 from "./rpc.query";
+import * as _140 from "./rpc.tx";
 export namespace coreum {
   export namespace asset {
     export namespace ft {
@@ -49,10 +49,10 @@ export namespace coreum {
         ..._4,
         ..._5,
         ..._6,
-        ..._88,
-        ..._91,
-        ..._94,
-        ..._99
+        ..._95,
+        ..._98,
+        ..._101,
+        ..._106
       };
     }
     export namespace nft {
@@ -64,10 +64,10 @@ export namespace coreum {
         ..._11,
         ..._12,
         ..._13,
-        ..._89,
-        ..._92,
-        ..._95,
-        ..._100
+        ..._96,
+        ..._99,
+        ..._102,
+        ..._107
       };
     }
   }
@@ -76,7 +76,7 @@ export namespace coreum {
       ..._14,
       ..._15,
       ..._16,
-      ..._96
+      ..._103
     };
   }
   export namespace delay {
@@ -89,7 +89,7 @@ export namespace coreum {
       ..._18,
       ..._19,
       ..._20,
-      ..._97
+      ..._104
     };
   }
   export namespace nft {
@@ -99,14 +99,14 @@ export namespace coreum {
       ..._23,
       ..._24,
       ..._25,
-      ..._90,
-      ..._93,
-      ..._98,
-      ..._101
+      ..._97,
+      ..._100,
+      ..._105,
+      ..._108
     };
   }
   export const ClientFactory = {
-    ..._128,
-    ..._129
+    ..._139,
+    ..._140
   };
 }
